@@ -1,10 +1,11 @@
-pipeline { 
-    agent any  
-    stages { 
-        stage('Build') { 
-            steps { 
-               echo 'This is a minimal pipeline.' 
-            }
-        }
-    }
-}
+pipeline {
+        agent { docker any }
+        stages {
+            steps {
+              sh 'mvn build' 
+              sh 'mvn compile' 
+              sh 'mvn test' 
+              sh 'mvn spring-boot:run' 
+                       }
+               }
+         }
