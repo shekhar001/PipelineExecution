@@ -1,11 +1,13 @@
 pipeline {
-        agent { docker any }
+        agent any
+	tools {
+		maven 'LOCALMAVEN'
+	}
         stages {
-            steps {
-              sh 'mvn build' 
-              sh 'mvn compile' 
-              sh 'mvn test' 
-              sh 'mvn spring-boot:run' 
-                       }
+		stage('Build'){
+            			steps {
+              				sh 'mvn clean package'              				
+                       			}
+				}
                }
          }
